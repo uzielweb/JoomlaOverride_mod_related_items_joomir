@@ -19,12 +19,13 @@ margin-right: 15px;
 }
 .owl-carousel .owl-nav .owl-next:before{
  font-size: 16px;
- content: "\f105";
+ content: ">";
  color: darkgreen;
+
 }
 .owl-carousel .owl-nav .owl-prev:before{
  font-size: 16px;
- content: "\f104";
+ content: "<";
  color: darkgreen;
  font-weight: bold;
 }
