@@ -8,9 +8,9 @@
 // no direct access
 defined('_JEXEC') or die;
 $app = JFactory::getApplication();
-$widthchoosen = $params->get('widthchoosen', '360');
-$heightchoosen = $params->get('heightchoosen', '240');
-$cropchoosen = $params->get('cropchoosen', '4:3');
+$widthchoosen = $params->get('widthchoosen', '900');
+$heightchoosen = $params->get('heightchoosen', '300');
+$cropchoosen = $params->get('cropchoosen', '4:1');
 $tpath = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 $modulepath = $tpath.'/html/mod_'.$module->name.'/';
 $thumbsnippet = $modulepath.'assets/smart/image.php?width='.$widthchoosen.'&height='.$heightchoosen.'&cropratio='.$cropchoosen.'&image='.JURI::root();
@@ -18,6 +18,7 @@ $document = JFactory::getDocument();
 $document->addStyleSheet($modulepath.'owlcarousel/owl.carousel.min.css');
 $document->addStyleSheet($modulepath.'owlcarousel/owl.theme.default.min.css');
 $document->addStyleSheet($modulepath.'assets/style.css');
+$document->addStyleSheet($modulepath.'assets/animate.css');
 //$document->addScript($modulepath.'owlcarousel/jquery.min.js');
 $document->addScript($modulepath.'owlcarousel/owl.carousel.min.js');
 $document->addScriptDeclaration('
