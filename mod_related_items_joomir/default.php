@@ -16,7 +16,7 @@ $cropchoosen = $params->get('cropchoosen', '4:3');
 $tpath = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 
 $modulepath = $tpath.'/html/mod_'.$module->name.'/';
-$thumbsnippet = $modulepath.'/assets/smart/image.php?width='.$widthchoosen.'&height='.$heightchoosen.'&cropratio='.$cropchoosen.'&image='.JURI::root();
+$thumbsnippet = $modulepath.'assets/smart/image.php?width='.$widthchoosen.'&height='.$heightchoosen.'&cropratio='.$cropchoosen.'&image='.JURI::root();
 
 $document = JFactory::getDocument();
 $document->addStyleSheet($modulepath.'owlcarousel/owl.carousel.min.css');
@@ -30,9 +30,9 @@ jQuery(document).ready(function($){
 	 loop:true,
     margin:10,
     nav:true,
-    buttons: true,
-    thumbnails: true,
     autoplay: true
+   
+    
   
   });
 });
@@ -44,7 +44,7 @@ jQuery(document).ready(function($){
   
 <?php 
 $i = 0;
-foreach ($list as $item) : { if (++$i > 5){break ;}   ?>
+foreach ($list as $item) : { if (++$i > $params->get('maximum')){break ;}   ?>
 <?PHP
       // Grab intro text and shorten to length specified below in numwords
   $numwords = 35;
@@ -61,7 +61,7 @@ $image = json_decode($item->images);
 <div id="paleo-related-wrapper">
 
 
-<div id="paleo-related-item-with-image" class="col-md-3 col-sm-6 col-xs-12">
+<div id="paleo-related-item-with-image" class="relateds">
 
 <span class="related-image">
 <a href="<?php echo $item->route; ?>">
