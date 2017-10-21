@@ -5,7 +5,7 @@ position: relative;
 	position: absolute;
 	top: 50%;
 	transform: translate: -50%;
-	background: rgba(255,255,255,0.5);
+	background: rgba(0,0,0,0.5);
 	padding: 10px;
 	font-size: 0px;
 	color: transparent;
@@ -20,13 +20,13 @@ margin-right: 15px;
 .owl-carousel .owl-nav .owl-next:before{
  font-size: 16px;
  content: ">";
- color: darkgreen;
-
+ color: #fff;
+font-weight: bold;
 }
 .owl-carousel .owl-nav .owl-prev:before{
  font-size: 16px;
  content: "<";
- color: darkgreen;
+ color: #fff;
  font-weight: bold;
 }
 .owl-carousel .owl-nav .owl-prev{
