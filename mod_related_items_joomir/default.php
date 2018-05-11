@@ -44,18 +44,28 @@ items:5,
 });
 '); 
 ?>
-<!--<h3 class="paleo_title">Related Items</h3>-->
+
 <div class="owl-carousel">
   <?php 
 $i = 0;
-foreach ($list as $item) : { if (++$i > $params->get('maximum')){break ;}   ?>
-  <?PHP
+//arsort é para sortear em ordem reversa do maior para o menor
+//$article refere-se a uma variável especial que pega coisas do artigo, pois não foram disponibilizadas plenamente na variável $item. No caso $item->created retornava somente data sem horário e eu queria pegar o horário, por isso instanciei uma nova variável para pegar coisas do artigo chamada $article (poderia ser qualquer nome, coloquei esse por achar mais conveniente no momento)
+
+arsort($list, $article->created);
+//aqui começa  a listagem  
+foreach ($list as $item) { 
+//aqui começa o uso da nova variável $article que pode pegar qualquer coisa dos artigos (funciona como a variável $item, porém mais completa)
+  
+$article = JTable::getInstance('content');
+$article->load($item->id);
+// list limit  
+if (++$i > $params->get('maximum')){break ;}   
+
 // Grab intro text and shorten to length specified below in numwords
 $numwords = 35;
 preg_match("/(\S+\s*){0,$numwords}/", $item->introtext, $regs);
 $shortdesc = trim($regs[0]);
-?>
-  <?php 
+
 // Use json decode for image object
 $image = json_decode($item->images);
 ?>
@@ -73,7 +83,13 @@ $image = json_decode($item->images);
       </div>
       <?php if ($params->get('showDate') == '1') : ?>
       <div class="related-date">
-        <?php echo JHtml::_(date, $item->published, 'd \d\e F \d\e Y') ; ?>
+<?php 
+// aqui o texto está formatado para data (d-m-Y) e hora (H:i:s)
+//para colocar assim "2 de janeiro de 2018" altere assim "d \d\e F \d\e Y"
+
+//para colocar assim "2 de janeiro de 2018 às 20:15 h" altere assim "d \d\e F \d\e Y \à\s H:h \h"
+  echo JHtml::_('date', $article->created, 'd-m-Y H:i:s'); 
+?>
       </div> 
       <?php endif;?>  
       <div class="related-text">
@@ -83,5 +99,5 @@ $image = json_decode($item->images);
   </div>
   <?php 
 }      
-endforeach; ?>
+?>
 </div>
